@@ -59,14 +59,14 @@ export default function ExpenseForm({ onCreated }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
+    <form onSubmit={handleSubmit} className="et-card" style={styles.form}>
       <h2 style={styles.heading}>Add Expense</h2>
 
-      {error && <p style={styles.error}>{error}</p>}
+      {error && <p className="et-error">{error}</p>}
 
       <div style={styles.row}>
         <label style={styles.label}>
-          Amount (₹)
+          <span style={styles.labelText}>Amount (₹)</span>
           <input
             name="amount"
             type="number"
@@ -76,13 +76,13 @@ export default function ExpenseForm({ onCreated }) {
             value={form.amount}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="et-input"
           />
         </label>
 
         <label style={styles.label}>
-          Category
-          <select name="category" value={form.category} onChange={handleChange} style={styles.input}>
+          <span style={styles.labelText}>Category</span>
+          <select name="category" value={form.category} onChange={handleChange} className="et-input">
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
@@ -90,20 +90,20 @@ export default function ExpenseForm({ onCreated }) {
         </label>
 
         <label style={styles.label}>
-          Date
+          <span style={styles.labelText}>Date</span>
           <input
             name="date"
             type="date"
             value={form.date}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="et-input"
           />
         </label>
       </div>
 
-      <label style={styles.label}>
-        Description
+      <label style={{ ...styles.label, width: "100%" }}>
+        <span style={styles.labelText}>Description</span>
         <input
           name="description"
           type="text"
@@ -111,11 +111,11 @@ export default function ExpenseForm({ onCreated }) {
           value={form.description}
           onChange={handleChange}
           required
-          style={{ ...styles.input, width: "100%" }}
+          className="et-input"
         />
       </label>
 
-      <button type="submit" disabled={submitting} style={submitting ? styles.btnDisabled : styles.btn}>
+      <button type="submit" disabled={submitting} className="et-btn" style={styles.submitBtn}>
         {submitting ? "Saving…" : "Add Expense"}
       </button>
     </form>
@@ -123,12 +123,10 @@ export default function ExpenseForm({ onCreated }) {
 }
 
 const styles = {
-  form: { background: "#fff", padding: "1.5rem", borderRadius: 8, boxShadow: "0 1px 3px rgba(0,0,0,.1)", marginBottom: "1.5rem" },
-  heading: { marginBottom: "1rem", fontSize: "1.1rem", fontWeight: 600 },
-  row: { display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "0.75rem" },
-  label: { display: "flex", flexDirection: "column", gap: "0.3rem", fontSize: "0.875rem", fontWeight: 500, flex: 1, minWidth: 140 },
-  input: { padding: "0.45rem 0.6rem", border: "1px solid #d1d5db", borderRadius: 6, fontSize: "0.95rem", marginTop: 2 },
-  btn: { marginTop: "1rem", padding: "0.5rem 1.25rem", background: "#2563eb", color: "#fff", border: "none", borderRadius: 6, cursor: "pointer", fontWeight: 600, fontSize: "0.95rem" },
-  btnDisabled: { marginTop: "1rem", padding: "0.5rem 1.25rem", background: "#93c5fd", color: "#fff", border: "none", borderRadius: 6, cursor: "not-allowed", fontWeight: 600, fontSize: "0.95rem" },
-  error: { color: "#dc2626", fontSize: "0.875rem", marginBottom: "0.75rem", background: "#fef2f2", padding: "0.5rem", borderRadius: 4 },
+  form: { padding: "1.5rem", marginBottom: "1.25rem" },
+  heading: { marginBottom: "1.25rem", fontSize: "0.95rem", fontWeight: 700, letterSpacing: "-0.01em", color: "#0d0d0d" },
+  row: { display: "flex", gap: "0.875rem", flexWrap: "wrap", marginBottom: "0.875rem" },
+  label: { display: "flex", flexDirection: "column", gap: "0.35rem", flex: 1, minWidth: 140 },
+  labelText: { fontSize: "0.72rem", fontWeight: 600, color: "#9a9a9a", textTransform: "uppercase", letterSpacing: "0.05em" },
+  submitBtn: { marginTop: "1.25rem" },
 };

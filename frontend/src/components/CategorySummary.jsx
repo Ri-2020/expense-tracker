@@ -12,11 +12,11 @@ export default function CategorySummary({ summary, loading }) {
   if (loading || !summary.length) return null;
 
   return (
-    <div style={styles.wrap}>
-      <h3 style={styles.heading}>Spending by Category</h3>
+    <div className="et-card" style={styles.wrap}>
+      <h3 style={styles.heading}>By Category</h3>
       <div style={styles.grid}>
         {summary.map((s) => (
-          <div key={s.category} style={styles.card}>
+          <div key={s.category} style={styles.item}>
             <span style={styles.cat}>{s.category}</span>
             <span style={styles.amount}>₹{s.total}</span>
           </div>
@@ -27,10 +27,10 @@ export default function CategorySummary({ summary, loading }) {
 }
 
 const styles = {
-  wrap: { background: "#fff", borderRadius: 8, boxShadow: "0 1px 3px rgba(0,0,0,.1)", padding: "1.25rem", marginBottom: "1.5rem" },
-  heading: { fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.75rem", color: "#374151" },
-  grid: { display: "flex", gap: "0.75rem", flexWrap: "wrap" },
-  card: { display: "flex", flexDirection: "column", gap: 2, background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 6, padding: "0.5rem 0.85rem", minWidth: 110 },
-  cat: { fontSize: "0.78rem", color: "#6b7280", fontWeight: 500 },
-  amount: { fontSize: "1rem", fontWeight: 700, color: "#111827", fontVariantNumeric: "tabular-nums" },
+  wrap: { padding: "1.25rem", marginBottom: "1.25rem" },
+  heading: { fontSize: "0.72rem", fontWeight: 600, marginBottom: "0.875rem", color: "#9a9a9a", textTransform: "uppercase", letterSpacing: "0.06em" },
+  grid: { display: "flex", gap: "0.625rem", flexWrap: "wrap" },
+  item: { display: "flex", flexDirection: "column", gap: 3, background: "#fafaf8", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 4, padding: "0.6rem 0.9rem", minWidth: 100 },
+  cat: { fontSize: "0.68rem", color: "#9a9a9a", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" },
+  amount: { fontSize: "1.05rem", fontWeight: 700, color: "#0d0d0d", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.01em" },
 };

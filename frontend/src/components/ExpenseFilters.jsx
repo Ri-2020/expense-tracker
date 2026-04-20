@@ -15,8 +15,8 @@ export default function ExpenseFilters({ category, onCategoryChange, sort, onSor
   return (
     <div style={styles.bar}>
       <label style={styles.label}>
-        Filter by category
-        <select value={category} onChange={(e) => onCategoryChange(e.target.value)} style={styles.select}>
+        <span style={styles.labelText}>Category</span>
+        <select value={category} onChange={(e) => onCategoryChange(e.target.value)} className="et-input" style={{ minWidth: 150 }}>
           <option value="">All categories</option>
           {categories.map((c) => (
             <option key={c} value={c}>{c}</option>
@@ -25,8 +25,8 @@ export default function ExpenseFilters({ category, onCategoryChange, sort, onSor
       </label>
 
       <label style={styles.label}>
-        Sort
-        <select value={sort} onChange={(e) => onSortChange(e.target.value)} style={styles.select}>
+        <span style={styles.labelText}>Sort</span>
+        <select value={sort} onChange={(e) => onSortChange(e.target.value)} className="et-input" style={{ minWidth: 150 }}>
           <option value="date_desc">Newest first</option>
           <option value="date_asc">Oldest first</option>
         </select>
@@ -36,7 +36,7 @@ export default function ExpenseFilters({ category, onCategoryChange, sort, onSor
 }
 
 const styles = {
-  bar: { display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "1rem", alignItems: "flex-end" },
-  label: { display: "flex", flexDirection: "column", gap: "0.3rem", fontSize: "0.875rem", fontWeight: 500 },
-  select: { padding: "0.4rem 0.6rem", border: "1px solid #d1d5db", borderRadius: 6, fontSize: "0.875rem", background: "#fff" },
+  bar: { display: "flex", gap: "0.875rem", flexWrap: "wrap", marginBottom: "1.25rem", alignItems: "flex-end" },
+  label: { display: "flex", flexDirection: "column", gap: "0.35rem" },
+  labelText: { fontSize: "0.72rem", fontWeight: 600, color: "#9a9a9a", textTransform: "uppercase", letterSpacing: "0.05em" },
 };

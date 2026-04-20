@@ -20,23 +20,24 @@ export default function Login() {
 
   return (
     <div style={styles.page}>
-      <div style={styles.card}>
-        <h1 style={styles.title}>Expense Tracker</h1>
+      <div className="et-card" style={styles.card}>
+        <p style={styles.eyebrow}>Expense Tracker</p>
+        <h1 style={styles.title}>Track your spending,<br />effortlessly.</h1>
         <p style={styles.subtitle}>Sign in to manage your expenses</p>
-        <button onClick={handleLogin} disabled={loading} style={styles.btn}>
-          {loading ? "Signing in…" : "Sign in with Google"}
+        <button onClick={handleLogin} disabled={loading} className="et-btn" style={styles.btn}>
+          {loading ? "Signing in…" : "Continue with Google"}
         </button>
-        {error && <p style={styles.error}>{error}</p>}
+        {error && <p className="et-error" style={{ marginBottom: 0, marginTop: "0.75rem" }}>{error}</p>}
       </div>
     </div>
   );
 }
 
 const styles = {
-  page: { minHeight: "100vh", background: "#f5f5f5", display: "flex", alignItems: "center", justifyContent: "center" },
-  card: { background: "#fff", borderRadius: 12, boxShadow: "0 4px 16px rgba(0,0,0,.1)", padding: "2.5rem 2rem", textAlign: "center", minWidth: 320 },
-  title: { fontSize: "1.6rem", fontWeight: 700, color: "#1e40af", marginBottom: "0.5rem" },
-  subtitle: { color: "#6b7280", marginBottom: "1.75rem", fontSize: "0.95rem" },
-  btn: { background: "#1e40af", color: "#fff", border: "none", borderRadius: 8, padding: "0.75rem 1.5rem", fontSize: "1rem", fontWeight: 600, cursor: "pointer", width: "100%" },
-  error: { color: "#dc2626", marginTop: "1rem", fontSize: "0.875rem" },
+  page: { minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" },
+  card: { padding: "2.5rem 2rem", minWidth: 340, maxWidth: 400, width: "100%" },
+  eyebrow: { fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#9a9a9a", marginBottom: "1rem" },
+  title: { fontSize: "1.75rem", fontWeight: 700, lineHeight: 1.22, letterSpacing: "-0.025em", color: "#0d0d0d", marginBottom: "0.4rem" },
+  subtitle: { fontSize: "0.875rem", color: "#9a9a9a" },
+  btn: { width: "100%", marginTop: "1.75rem", padding: "0.65rem 1.5rem" },
 };

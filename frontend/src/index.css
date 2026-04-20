@@ -1,0 +1,168 @@
+/* ============================================
+   EXPENSE TRACKER — PREMIUM B&W GRAPH PAPER
+   ============================================ */
+
+:root {
+  --bg: #f5f5f3;
+  --surface: #ffffff;
+  --surface-dim: #fafaf8;
+  --border: rgba(0, 0, 0, 0.07);
+  --border-md: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.22);
+  --text: #0d0d0d;
+  --text-2: #454545;
+  --text-3: #9a9a9a;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--bg);
+  /* Graph paper grid */
+  background-image:
+    linear-gradient(rgba(0,0,0,0.048) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.048) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ---- Card surface with grainy gradient ---- */
+.et-card {
+  background-color: #ffffff;
+  /* Noise grain blended over a subtle warm gradient */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E"),
+    linear-gradient(155deg, #ffffff 0%, #f6f6f4 100%);
+  background-blend-mode: multiply, normal;
+  background-size: 300px 300px, 100% 100%;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ---- Sticky frosted header ---- */
+.et-header {
+  background: rgba(245, 245, 243, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-md);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* ---- Category badge pill ---- */
+.et-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface-dim);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---- Table row hover ---- */
+.et-tr td {
+  transition: background 0.1s;
+}
+.et-tr:hover td {
+  background: var(--surface-dim);
+}
+
+/* ---- Field input / select ---- */
+.et-input {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.12s, box-shadow 0.12s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.et-input:focus {
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+/* ---- Primary button ---- */
+.et-btn {
+  background: var(--text);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: opacity 0.12s;
+}
+
+.et-btn:hover:not(:disabled) {
+  opacity: 0.82;
+}
+
+.et-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ---- Ghost / outline button ---- */
+.et-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.78rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-3);
+  letter-spacing: 0.01em;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.et-btn-ghost:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+/* ---- Error message ---- */
+.et-error {
+  color: var(--text);
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  background: var(--surface-dim);
+  margin-bottom: 0.75rem;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.14); border-radius: 3px; }

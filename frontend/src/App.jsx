@@ -27,11 +27,13 @@ function Dashboard({ user }) {
 
   return (
     <div style={styles.page}>
-      <header style={styles.header}>
-        <h1 style={styles.title}>Expense Tracker</h1>
-        <div style={styles.userBar}>
-          <span style={styles.userName}>{user.displayName || user.email}</span>
-          <button onClick={logout} style={styles.logoutBtn}>Sign out</button>
+      <header className="et-header">
+        <div style={styles.headerInner}>
+          <span style={styles.title}>Expense Tracker</span>
+          <div style={styles.userBar}>
+            <span style={styles.userName}>{user.displayName || user.email}</span>
+            <button onClick={logout} className="et-btn-ghost">Sign out</button>
+          </div>
         </div>
       </header>
 
@@ -39,7 +41,7 @@ function Dashboard({ user }) {
         <ExpenseForm onCreated={handleCreated} />
         <CategorySummary summary={summary} loading={summaryLoading} />
 
-        <div style={styles.listSection}>
+        <div className="et-card" style={styles.listSection}>
           <ExpenseFilters
             category={category}
             onCategoryChange={setCategory}
@@ -63,12 +65,11 @@ export default function App() {
 }
 
 const styles = {
-  page: { minHeight: "100vh", background: "#f5f5f5" },
-  header: { background: "#1e40af", padding: "1rem 2rem", boxShadow: "0 2px 4px rgba(0,0,0,.15)", display: "flex", alignItems: "center", justifyContent: "space-between" },
-  title: { color: "#fff", fontSize: "1.4rem", fontWeight: 700 },
-  userBar: { display: "flex", alignItems: "center", gap: "1rem" },
-  userName: { color: "#bfdbfe", fontSize: "0.875rem" },
-  logoutBtn: { background: "transparent", border: "1px solid #bfdbfe", color: "#bfdbfe", borderRadius: 6, padding: "0.3rem 0.75rem", fontSize: "0.8rem", cursor: "pointer" },
-  main: { maxWidth: 900, margin: "0 auto", padding: "1.5rem 1rem" },
-  listSection: { background: "#fff", padding: "1.25rem", borderRadius: 8, boxShadow: "0 1px 3px rgba(0,0,0,.1)" },
+  page: { minHeight: "100vh" },
+  headerInner: { maxWidth: 900, margin: "0 auto", padding: "0.875rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" },
+  title: { fontSize: "0.95rem", fontWeight: 700, letterSpacing: "-0.01em", color: "#0d0d0d" },
+  userBar: { display: "flex", alignItems: "center", gap: "0.875rem" },
+  userName: { fontSize: "0.8rem", color: "#9a9a9a" },
+  main: { maxWidth: 900, margin: "0 auto", padding: "2rem 1.5rem" },
+  listSection: { padding: "1.25rem" },
 };

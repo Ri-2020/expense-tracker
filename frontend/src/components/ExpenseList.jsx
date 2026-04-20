@@ -12,42 +12,40 @@
 
 export default function ExpenseList({ expenses, total, loading, error }) {
   if (loading) return <p style={styles.state}>Loading expenses…</p>;
-  if (error) return <p style={{ ...styles.state, color: "#dc2626" }}>Error: {error}</p>;
-  if (!expenses.length) return <p style={styles.state}>No expenses found. Add one above.</p>;
+  if (error) return <p style={{ ...styles.state, color: "#0d0d0d" }}>Error: {error}</p>;
+  if (!expenses.length) return <p style={styles.state}>No expenses yet. Add one above.</p>;
 
   return (
-    <div>
-      <div style={styles.tableWrap}>
-        <table style={styles.table}>
-          <thead>
-            <tr>
-              {["Date", "Category", "Description", "Amount (₹)"].map((h) => (
-                <th key={h} style={styles.th}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {expenses.map((e) => (
-              <tr key={e.id} style={styles.tr}>
-                <td style={styles.td}>{formatDate(e.date)}</td>
-                <td style={styles.td}>
-                  <span style={styles.badge}>{e.category}</span>
-                </td>
-                <td style={styles.td}>{e.description}</td>
-                <td style={{ ...styles.td, textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
-                  ₹{e.amount}
-                </td>
-              </tr>
+    <div style={styles.tableWrap}>
+      <table style={styles.table}>
+        <thead>
+          <tr>
+            {["Date", "Category", "Description", "Amount (₹)"].map((h) => (
+              <th key={h} style={styles.th}>{h}</th>
             ))}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={3} style={styles.totalLabel}>Total</td>
-              <td style={styles.totalAmount}>₹{total}</td>
+          </tr>
+        </thead>
+        <tbody>
+          {expenses.map((e) => (
+            <tr key={e.id} className="et-tr">
+              <td style={{ ...styles.td, color: "#9a9a9a", fontVariantNumeric: "tabular-nums", fontSize: "0.82rem" }}>{formatDate(e.date)}</td>
+              <td style={styles.td}>
+                <span className="et-badge">{e.category}</span>
+              </td>
+              <td style={{ ...styles.td, color: "#454545" }}>{e.description}</td>
+              <td style={{ ...styles.td, textAlign: "right", fontVariantNumeric: "tabular-nums", fontWeight: 600, color: "#0d0d0d" }}>
+                ₹{e.amount}
+              </td>
             </tr>
-          </tfoot>
-        </table>
-      </div>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={3} style={styles.totalLabel}>Total</td>
+            <td style={styles.totalAmount}>₹{total}</td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
   );
 }
@@ -58,13 +56,11 @@ function formatDate(iso) {
 }
 
 const styles = {
-  tableWrap: { overflowX: "auto", borderRadius: 8, boxShadow: "0 1px 3px rgba(0,0,0,.1)" },
-  table: { width: "100%", borderCollapse: "collapse", background: "#fff", fontSize: "0.9rem" },
-  th: { padding: "0.65rem 0.9rem", textAlign: "left", borderBottom: "2px solid #e5e7eb", fontWeight: 600, background: "#f9fafb", fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "0.04em", color: "#6b7280" },
-  tr: { borderBottom: "1px solid #f3f4f6" },
-  td: { padding: "0.65rem 0.9rem", verticalAlign: "middle" },
-  badge: { background: "#eff6ff", color: "#1d4ed8", padding: "0.2rem 0.55rem", borderRadius: 12, fontSize: "0.78rem", fontWeight: 500 },
-  totalLabel: { padding: "0.65rem 0.9rem", fontWeight: 700, borderTop: "2px solid #e5e7eb", textAlign: "right", color: "#374151" },
-  totalAmount: { padding: "0.65rem 0.9rem", fontWeight: 700, textAlign: "right", borderTop: "2px solid #e5e7eb", fontVariantNumeric: "tabular-nums", fontSize: "1rem" },
-  state: { padding: "2rem", textAlign: "center", color: "#6b7280" },
+  tableWrap: { overflowX: "auto" },
+  table: { width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" },
+  th: { padding: "0.55rem 0.875rem", textAlign: "left", borderBottom: "1px solid rgba(0,0,0,0.1)", fontWeight: 600, fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.055em", color: "#9a9a9a" },
+  td: { padding: "0.7rem 0.875rem", verticalAlign: "middle", borderBottom: "1px solid rgba(0,0,0,0.06)" },
+  totalLabel: { padding: "0.7rem 0.875rem", fontWeight: 600, borderTop: "1px solid rgba(0,0,0,0.12)", textAlign: "right", color: "#9a9a9a", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.04em" },
+  totalAmount: { padding: "0.7rem 0.875rem", fontWeight: 700, textAlign: "right", borderTop: "1px solid rgba(0,0,0,0.12)", fontVariantNumeric: "tabular-nums", fontSize: "1rem", color: "#0d0d0d" },
+  state: { padding: "2.5rem", textAlign: "center", color: "#9a9a9a", fontSize: "0.875rem" },
 };
